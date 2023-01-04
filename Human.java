@@ -1,6 +1,6 @@
 package Homeworks.Seminar1;
 
-public class Human {
+public abstract class Human {
     private Integer age;
     private String gender;
 

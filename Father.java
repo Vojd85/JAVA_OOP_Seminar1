@@ -1,6 +1,6 @@
 package Homeworks.Seminar1;
 
-public class Father extends Human{
+public class Father extends Human implements Cat, Dog{
 
     private Integer id;
     private String name;
@@ -27,5 +27,16 @@ public class Father extends Human{
         } else {
             return "No chields";
         }
+    }
+
+    @Override
+    public void callTheCat() {
+        System.out.println(this.name +": Где эта мохнатая скотинка?");
+    }
+
+    @Override
+    public void callTheDog() {
+        Chield c = this.chield;
+        System.out.println(c.getName() + ", позови собаку!");
     }
 }
