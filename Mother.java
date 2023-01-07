@@ -1,13 +1,15 @@
 package Homeworks.Seminar1;
 
-public class Mother extends Human implements Cat, Dog {
+// Класс Мать  ----  комментарии в классе "Father"
+
+public class Mother extends Human implements I__Cat, I__Dog {
     private Integer id;
     private String name;
     private Chield chield;
 
-    public Mother(Integer id, String name, Integer age, String gender, Chield c) {
+    public Mother(String name, Integer age, String gender, Chield c) {
         super(age, gender);
-        this.id = id;
+        this.id = super.getId();
         this.name = name;
         this.chield = c;
     }
@@ -21,6 +23,10 @@ public class Mother extends Human implements Cat, Dog {
         }
     }
 
+    public void addChield(Chield c){ // Добавление ребенка
+        this.chield = c;
+    }
+
     @Override
     public void callTheCat() {
         System.out.println(this.name +": Киса, иди покушай!");
@@ -30,7 +36,7 @@ public class Mother extends Human implements Cat, Dog {
     public void callTheDog() {
         System.out.println(this.name + "зовет пса поесть");
     }
-    
+
 
 
 }

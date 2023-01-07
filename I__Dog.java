@@ -1,6 +1,6 @@
 package Homeworks.Seminar1;
 
-public interface Dog extends Animal{
+public interface I__Dog extends I__Animal{ // Интерфейс Собака
     default void pushTheDog(){
         System.out.println("Виляет хвостиком");
     }

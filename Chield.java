@@ -1,6 +1,8 @@
 package Homeworks.Seminar1;
 
-public class Chield extends Human implements Cat, Dog {
+// Класс ребенок ---- комментарии в классе "Father"
+
+public class Chield extends Human implements I__Cat, I__Dog { 
     
     private Integer id;
     private String name;
@@ -9,9 +11,9 @@ public class Chield extends Human implements Cat, Dog {
     
 
 
-    public Chield(Integer id, String name, Integer age, String gender, Father father, Mother mother) {
+    public Chield(String name, Integer age, String gender, Father father, Mother mother) {
         super(age, gender);
-        this.id = id;
+        this.id = super.getId();
         this.name = name;
         this.f = father;
         this.m = mother;
@@ -23,8 +25,16 @@ public class Chield extends Human implements Cat, Dog {
     public String getInfo() {
         return String.format( "ID: %d Name: %s %s", this.id, this.name, super.getInfo());
     }
+
+    public void setFather(Father father) { // Прописываем папу
+        this.f = father;
+    }
+
+    public void setMother(Mother mother) { // Прописываем маму
+        this.m = mother;
+    }
     
-    public String getParents(){
+    public String getParents(){ // Метод выводит родителей
         return String.format("Mother: %s\n Father: %s", this.m.getInfo(), this.f.getInfo());
     }
 
