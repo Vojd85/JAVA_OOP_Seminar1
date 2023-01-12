@@ -8,6 +8,7 @@ public class Chield extends Human implements I__Cat, I__Dog {
     private String name;
     private Father f;
     private Mother m;
+    public String notes;
     
 
 
@@ -23,7 +24,11 @@ public class Chield extends Human implements I__Cat, I__Dog {
     }
     @Override
     public String getInfo() {
-        return String.format( "ID: %d Name: %s %s", this.id, this.name, super.getInfo());
+        return String.format( "ID: %d Name: %s %s Notes: %s", this.id, this.name, super.getInfo(), notes);
+    }
+    @Override
+    public String toString() {
+        return String.format( "Chield: Name: %s %s ", this.name, super.getInfo());
     }
 
     public void setFather(Father father) { // Прописываем папу
@@ -46,6 +51,12 @@ public class Chield extends Human implements I__Cat, I__Dog {
     @Override
     public void callTheDog() {
         System.out.println(this.name + " зовёт собачку");
+    }
+
+    public <T> void addNotes(T t){
+        if(t instanceof Human){
+            System.out.println("Не добавляйте детей!");
+        } else this.notes = t.toString();
     }
 
 

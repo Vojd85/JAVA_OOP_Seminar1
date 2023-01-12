@@ -6,6 +6,7 @@ public class Mother extends Human implements I__Cat, I__Dog {
     private Integer id;
     private String name;
     private Chield chield;
+    public String notes;
 
     public Mother(String name, Integer age, String gender, Chield c) {
         super(age, gender);
@@ -17,10 +18,14 @@ public class Mother extends Human implements I__Cat, I__Dog {
     @Override
     public String getInfo() {
         if (this.chield != null){
-            return String.format( "ID: %d Name: %s %s Children: Y ", this.id, this.name, super.getInfo());
+            return String.format( "ID: %d Name: %s %s Children: Y Notes: %s", this.id, this.name, super.getInfo(), notes);
         } else {
-            return String.format( "ID: %d Name: %s %s Children: N ", this.id, this.name, super.getInfo());
+            return String.format( "ID: %d Name: %s %s Children: N Notes: %s", this.id, this.name, super.getInfo(), notes);
         }
+    }
+    @Override
+    public String toString() {
+        return String.format( "Mother: Name: %s %s ", this.name, super.getInfo());
     }
 
     public void addChield(Chield c){ // Добавление ребенка
@@ -37,6 +42,8 @@ public class Mother extends Human implements I__Cat, I__Dog {
         System.out.println(this.name + "зовет пса поесть");
     }
 
-
+    public <T> void addNotes(T t){
+        this.notes = t.toString();
+    }
 
 }

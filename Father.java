@@ -6,6 +6,7 @@ public class Father extends Human implements I__Cat, I__Dog{
     private Integer id; // уникальный номер человека
     private String name;
     private Chield chield;
+    public String notes;
 
     public Father(String name, Integer age, String gender, Chield c) { // конструктор класса
         super(age, gender); // параметры передаются в конструктор материнского абстрактного класса "Human"
@@ -17,10 +18,14 @@ public class Father extends Human implements I__Cat, I__Dog{
     @Override
     public String getInfo() {
         if (this.chield != null){
-            return String.format( "ID: %d Name: %s %s Children: Y ", this.id, this.name, super.getInfo());
+            return String.format( "ID: %d Name: %s %s Children: Y Notes: %s", this.id, this.name, super.getInfo(), notes);
         } else {
-            return String.format( "ID: %d Name: %s %s Children: N ", this.id, this.name, super.getInfo());
+            return String.format( "ID: %d Name: %s %s Children: N Notes: %s", this.id, this.name, super.getInfo(), notes);
         }
+    }
+    @Override
+    public String toString() {
+        return String.format( "Father: Name: %s %s ", this.name, super.getInfo());
     }
 
     public void addChield(Chield c){ // Добавление ребенка
@@ -47,5 +52,9 @@ public class Father extends Human implements I__Cat, I__Dog{
     public void callTheDog() { // Зовем собаку
         Chield c = this.chield;
         System.out.println(c.getName() + ", позови собаку!");
+    }
+
+    public <T> void addNotes(T t){
+        this.notes = t.toString();
     }
 }

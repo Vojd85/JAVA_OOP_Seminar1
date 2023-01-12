@@ -1,9 +1,10 @@
 /*Задача:
-* Проделать код ревью своих работ. Продумать, какие компоненты можно и нужно переписать.
+* Реализовать как минимум 2 обобщения
 */
 
 package Homeworks.Seminar1;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.function.Supplier;
 
@@ -45,7 +46,8 @@ public class Program {
             return new Mother(name, age, gender, null);
 
         };
-        
+        // Добавление вручную
+        // Не успел у родителей заменить поле ребенка на список детей...
         Chield c1 = new Chield("Deff", 2, "male", null, null);
         Father f1 = new Father("Father", 37, "male", null);
         Mother m1 = new Mother("Mom", 25, "female", c1);
@@ -65,20 +67,62 @@ public class Program {
         Mother m12 = mother.get(); // И мама не заставила себя долго ждать)
         System.out.println(m12.getInfo());
 
-        System.out.println(c1.getInfo());
+        Family<Father, Mother, Chield> family1 = new Family<>(f1, m1, c1); // Создаем новый объект "Семья"
+        family1.addBaby(c2); // Добавляем туда еще одного ребенка (Добавил ArrayList детишек)
+        family1.getInfo();// Смотрим состав семьи
+        f1.addNotes(3.14); // Добавление заметок 
+        c1.addNotes("Шалун)"); // Добавление заметок 
+        m1.addNotes(5L); // Добавление заметок 
+        f3.addNotes("Никому не нужен...");
         System.out.println(f1.getInfo());
+        System.out.println(c1.getInfo());
         System.out.println(m1.getInfo());
-        System.out.println(c2.getInfo());
-        System.out.println(c2.getParents());
-        System.out.println(f3.getChield());
-        System.out.println(f1.getChield());
-        c2.callTheCat();
-        c1.pushTheCat();
-        f3.callTheCat();
-        f3.callTheDog();
-        c1.pushTheDog();
-        c2.callTheDog();
-        System.out.println(f4.getInfo());
+        c1.addNotes(c2); // Попытка добавить объект)))
+        
+        // System.out.println(m1.getInfo());
+        // System.out.println(c2.getInfo());
+        // System.out.println(c2.getParents());
+        // System.out.println(f3.getChield());
+        // System.out.println(f1.getChield());
+        // c2.callTheCat();
+        // c1.pushTheCat();
+        // f3.callTheCat();
+        // f3.callTheDog();
+        // c1.pushTheDog();
+        // c2.callTheDog();
+        // System.out.println(f4.getInfo());
         scan.close();
     }
+
+
+}
+// Класс "Семья" который принимает только наследников абстрактного класса "Human"
+class Family <T1, T2, T3 extends Human>{
+    private T1 father;
+    private T2 mother;
+    private ArrayList<T3> chield; // Добавил список детишек
+
+    public Family(T1 f, T2 m, T3 c){ // Конструктор принимает на вход 3 аргумента разного типа
+        ArrayList<T3> chieldList = new ArrayList<>();
+        this.father = f;
+        this.mother = m;
+        chieldList.add(c);
+        this.chield = chieldList;
+    }
+
+    public void addBaby(T3 e){ // Метод добавления ребенка в список
+        chield.add(e);
+        
+    }
+
+    public void getInfo(){ // Метод получения информации по составу семьи
+        System.out.println(father);
+        System.out.println(mother);
+        System.out.println("Chields:");
+        for(T3 x: chield){
+            System.out.println(x);
+        }
+    }
+    
+
 }
